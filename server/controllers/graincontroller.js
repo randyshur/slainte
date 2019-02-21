@@ -17,7 +17,13 @@ router.get('/all', (req, res) => {
 
 // Get by grain usually for editing
 router.get('/:grain', (req, res) => {
-  Pie.findOne({ where: { grain: req.params.grain } })
+  Grain.findOne({ where: { grain: req.params.grain } })
+    .then(grain => res.status(200).json(grain))
+    .catch(err => res.status(500).json(err))
+})
+
+router.get('/id/:id', (req, res) => {
+  Grain.findOne({ where: { id: req.params.id } })
     .then(grain => res.status(200).json(grain))
     .catch(err => res.status(500).json(err))
 })
