@@ -3,7 +3,9 @@
   src: url(./assets/fonts/druidhill-webfont.woff);
 }
 body {
+  /*
   background-image: url("./assets/images/woodford2.png");
   background-size: cover;
+  */
   font-family: DruidHill;
 }
