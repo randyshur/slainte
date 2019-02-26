@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
+import Sitebar from './Sitebar';
 import Shelf from './Shelf';
 import HomeDisplay from './HomeDisplay';
 
 class Home extends Component {
+
     render() {
         return (
             <div>
+                <Sitebar slainteModal={this.props.slainteModal} task={this.props.task}/>
                 <Shelf />
                 <HomeDisplay />
             </div>

@@ -1,8 +1,9 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import Background from '../assets/images/plank.png';
-import Lookup from './Lookups/LookupIndex';
-import { NavLink as RRDNavLink, Route } from 'react-router-dom';
+import UserModal from './Users/User';
+import LookupModal from './Lookups/LookupIndex';
+
+import { NavLink as RRDNavLink} from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -18,6 +19,7 @@ import {
 
   const styles={
     navbar: {
+      background: "red",
       backgroundImage: "url(" + Background + ")",
       fontFamily: 'druidhill',
       color: 'white',
@@ -41,11 +43,17 @@ import {
   }
 
 export default class Sitebar extends React.Component {
+
   constructor(props) {
       super(props);
       this.state = {
         isOpen: false
       };
+      this.goHome = this.goHome.bind(this)
+    }
+
+    goHome() {
+      alert('hello' + this.state.bob)
     }
 
     toggle() {
@@ -54,14 +62,8 @@ export default class Sitebar extends React.Component {
       });
     }
 
-    showFinish = () => {
-      //alert('hello there');
-      ReactDOM.render(<Lookup />);
-    }
-
     render() {
-
-      let  coby = 'Doggie';
+      console.log('props--->' + this.props.bob)
 
       return (
         <div style={styles.navbar}>
@@ -71,19 +73,19 @@ export default class Sitebar extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar style={styles.text}>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="#" style={styles.navbar}>Signup</NavLink>
+                <NavLink tag={RRDNavLink} exact to={{pathname: "/signin"}} style={styles.navbar}>Signin</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#" style={styles.navbar}>Update Info</NavLink>
+                <NavLink tag={RRDNavLink} exact to={{pathname: "/signup"}} style={styles.navbar}>Signup</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#" style={styles.navbar}>Signin</NavLink>
+                <NavLink tag={RRDNavLink} exact to={{pathname: "/updateinfo"}} style={styles.navbar}>Update Info</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink tag={RRDNavLink} exact to="/distillery" activeClassName="active"  style={styles.navbar}>Distilleries</NavLink>
+                <NavLink tag={RRDNavLink} exact to="/distillery" style={styles.navbar}>Distilleries</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink  tag={RRDNavLink} exact to="/spirit" activeClassName="active"  style={styles.navbar}>Whiskies</NavLink>
+                <NavLink tag={RRDNavLink} exact to="/spirit"  style={styles.navbar}>Whiskies</NavLink>
               </NavItem>
               <NavItem>
                 <NavLink href="#" style={styles.navbar}>Item Display</NavLink>
@@ -99,32 +101,29 @@ export default class Sitebar extends React.Component {
                   <DropdownItem style={styles.navbar}>
                     Spirit
                   </DropdownItem>
-                  <DropdownItem divider  style={styles.navbar}/>
-                  <DropdownItem style={styles.navbar}>
+                  <DropdownItem divider style={styles.navbar}/>
+                  <DropdownItem tag={RRDNavLink} exact to={{pathname: "/bottlers"}} style={styles.navbar}>
                     Bottlers
                   </DropdownItem>
-                  <DropdownItem style={styles.navbar}>
-                    Finsishes
+                  <DropdownItem  tag={RRDNavLink} exact to={{pathname: "/finishes"}} style={styles.navbar}>
+                    Finishes
                   </DropdownItem>
-                  <DropdownItem tag={RRDNavLink} exact to={{
-    pathname: "/lookup",
-    state: { modal: true }
-  }} activeClassName="active"  style={styles.navbar}>
+                  <DropdownItem tag={RRDNavLink} exact to={{pathname: "/grains"}} style={styles.navbar}>
                     Grains
                   </DropdownItem>
-                  <DropdownItem style={styles.navbar} onClick={this.showFinish}>
+                  <DropdownItem tag={RRDNavLink} exact to={{pathname: "/notes"}} style={styles.navbar}>
                     Notes
                   </DropdownItem>
-                  <DropdownItem style={styles.navbar}>
+                  <DropdownItem tag={RRDNavLink} exact to={{pathname: "/owners"}} style={styles.navbar}>
                     Owners
                   </DropdownItem>
-                  <DropdownItem style={styles.navbar}>
+                  <DropdownItem tag={RRDNavLink} exact to={{pathname: "/ratings"}}  style={styles.navbar}>
                     Ratings
                   </DropdownItem>
-                  <DropdownItem style={styles.navbar}>
+                  <DropdownItem tag={RRDNavLink} exact to={{pathname: "/regions"}}  style={styles.navbar}>
                     Regions
                   </DropdownItem>
-                  <DropdownItem style={styles.navbar}>
+                  <DropdownItem tag={RRDNavLink} exact to={{pathname: "/types"}}  style={styles.navbar}>
                     Types
                   </DropdownItem>
                 </DropdownMenu>
@@ -132,7 +131,12 @@ export default class Sitebar extends React.Component {
             </Nav>
           </Collapse>
         </Navbar>
-        <Route exact path="/lookup" render={()=><Lookup dog={coby} />}/>
+        {
+          this.props.slainteModal === 'User'  ? <UserModal task={this.props.task}/> : <div></div>
+        }  
+        {
+          this.props.slainteModal === 'Lookup'  ? <LookupModal task={this.props.task}/> : <div></div>
+        } 
       </div>
       );
     }

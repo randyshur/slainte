@@ -2,23 +2,24 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } from 'reactstrap';
 
-class LookupIndex extends Component {
+import SignIn from './SignIn';
+
+class User extends Component {
 
   render() {
-    console.log(this.props.dog)
+
     return (
+      <div>
       <Modal isOpen={true}>
-        <div><Link to="/" className="danger">Close</Link>
+        <div><Link to="/" className="danger">Close</Link><h6>{this.props.task}</h6>
         </div>
-        <ModalHeader></ModalHeader>
         <ModalBody>
-          <div>
-            <h1>User Modal</h1>
-          </div>
+            <SignIn />
         </ModalBody>
       </Modal>
+      </div>
     );
   }
 }
 
-export default LookupIndex;
+export default User;

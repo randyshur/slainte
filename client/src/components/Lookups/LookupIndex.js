@@ -5,10 +5,9 @@ import { Button, Form, FormGroup, Label, Input, Modal, ModalHeader, ModalBody } 
 class LookupIndex extends Component {
 
   render() {
-    console.log(this.props.dog)
     return (
       <Modal isOpen={true}>
-        <div><Link to="/" className="danger">Close</Link>
+        <div><Link to="/" className="danger">Close</Link><h6>{this.props.task}</h6>
         </div>
         <ModalHeader></ModalHeader>
         <ModalBody>

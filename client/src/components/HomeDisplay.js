@@ -26,6 +26,7 @@ text-shadow:
 
 
 const HomeDisplay = () => {
+
   return (
       <Wrapper>
         <Header>Sláinte</Header>
