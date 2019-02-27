@@ -19,6 +19,7 @@ const type = require('./controllers/typecontroller');
 
 sequelize.sync();
 app.use(bodyParser.json());
+app.use(require('./middleware/headers'));
 
 app.use('/api/user', user)
 

@@ -8,7 +8,7 @@ class Home extends Component {
     render() {
         return (
             <div>
-                <Sitebar slainteModal={this.props.slainteModal} task={this.props.task}/>
+                <Sitebar slainteModal={this.props.slainteModal} task={this.props.task} setToken={this.props.setToken} />
                 <Shelf />
                 <HomeDisplay />
             </div>

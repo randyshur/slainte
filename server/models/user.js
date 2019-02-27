@@ -22,6 +22,11 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       defaultValue: false
      },
+     proprequest: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: false
+     },
      proprietor: {
         type: DataTypes.BOOLEAN,
         allowNull: false,

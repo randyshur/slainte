@@ -5,6 +5,9 @@ const jwt = require('jsonwebtoken');
 
 router.post('/signup', (req, res) => {
 
+    console.log('here is the req------>' + JSON.stringify(req.body))
+    console.log('here is the req------>' + req.body.user.firstName)
+
     User.create({
       firstName: req.body.user.firstName,
       lastName: req.body.user.lastName,
@@ -21,7 +24,7 @@ router.post('/signup', (req, res) => {
             sessionToken: token
           })
         },
-        createError = err => res.send(500, err)
+        createError = err => res.status(500).send(err)
       )
   })
 
