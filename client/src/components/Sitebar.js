@@ -64,24 +64,15 @@ export default class Sitebar extends React.Component {
     });
   }
 
-  logout = () => {
-    this.setState({
-      sessionToken: ''
-    })
-    localStorage.clear();
-  }
-
   memberMenuItems = () => {
-    console.log('local--->' + localStorage.getItem('token'))
-    console.log('state--->' + this.state.sessionToken)
-    console.log((this.state.sessionToken === localStorage.getItem('token')))
+    //console.log('local--->' + localStorage.getItem('token'))
+    //console.log('state--->' + this.props.sessionToken)
+    //console.log((this.props.sessionToken === localStorage.getItem('token')))
     //if (true){
     if (localStorage.getItem('token')){
+      //if (false){
       return (
         <React.Fragment>
-          <NavItem>
-            <NavLink tag={RRDNavLink} exact to={{ pathname: "/updateinfo" }} style={styles.navbar}>Update Info</NavLink>
-          </NavItem>
           <NavItem>
             <NavLink tag={RRDNavLink} exact to="/distillery" style={styles.navbar}>Distilleries</NavLink>
           </NavItem>
@@ -89,7 +80,7 @@ export default class Sitebar extends React.Component {
             <NavLink tag={RRDNavLink} exact to="/spirit" style={styles.navbar}>Whiskies</NavLink>
           </NavItem>
           <NavItem>
-            <Button onClick={() => this.logout()}>Logout</Button>
+            <Button onClick={() => this.props.clickLogout()}>Logout</Button>
           </NavItem>
         </React.Fragment >
       )
@@ -110,43 +101,22 @@ export default class Sitebar extends React.Component {
   }
 
   proprietorMenuItems = () => {
-    if (false) {
+    if (localStorage.getItem('token')){
       return (
         <UncontrolledDropdown nav inNavbar>
           <DropdownToggle nav caret style={styles.navbar}>
             Proprietor
           </DropdownToggle>
           <DropdownMenu right style={styles.dropdown}>
-            <DropdownItem style={styles.navbar}>
+          <DropdownItem tag={RRDNavLink} exact to={{ pathname: "/distilleryprop" }} style={styles.navbar}>
               Distillery
             </DropdownItem>
-            <DropdownItem style={styles.navbar}>
+            <DropdownItem tag={RRDNavLink} exact to={{ pathname: "/spiritprop" }} style={styles.navbar}>
               Spirit
             </DropdownItem>
             <DropdownItem divider style={styles.navbar} />
             <DropdownItem tag={RRDNavLink} exact to={{ pathname: "/bottlers" }} style={styles.navbar}>
               Bottlers
-            </DropdownItem>
-            <DropdownItem tag={RRDNavLink} exact to={{ pathname: "/finishes" }} style={styles.navbar}>
-              Finishes
-            </DropdownItem>
-            <DropdownItem tag={RRDNavLink} exact to={{ pathname: "/grains" }} style={styles.navbar}>
-              Grains
-            </DropdownItem>
-            <DropdownItem tag={RRDNavLink} exact to={{ pathname: "/notes" }} style={styles.navbar}>
-              Notes
-            </DropdownItem>
-            <DropdownItem tag={RRDNavLink} exact to={{ pathname: "/owners" }} style={styles.navbar}>
-              Owners
-            </DropdownItem>
-            <DropdownItem tag={RRDNavLink} exact to={{ pathname: "/ratings" }} style={styles.navbar}>
-              Ratings
-            </DropdownItem>
-            <DropdownItem tag={RRDNavLink} exact to={{ pathname: "/regions" }} style={styles.navbar}>
-              Regions
-            </DropdownItem>
-            <DropdownItem tag={RRDNavLink} exact to={{ pathname: "/types" }} style={styles.navbar}>
-              Types
             </DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>
@@ -165,9 +135,6 @@ export default class Sitebar extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar style={styles.text}>
             <Nav className="ml-auto" navbar>
               {this.memberMenuItems()}
-              <NavItem>
-                <NavLink href="#" style={styles.navbar}>Item Display</NavLink>
-              </NavItem>
               {this.proprietorMenuItems()}
             </Nav>
           </Collapse>

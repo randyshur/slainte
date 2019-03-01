@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link, Redirect} from 'react-router-dom';
 import { Col, Button, Form, FormGroup, Label, Input } from 'reactstrap';
 import styled from 'styled-components';
+import APIURL from '../../helpers/environment';
 
 const Header = styled.h6`
 @import url('../../assets/fonts/druidhill-webfont.woff');
@@ -42,7 +43,7 @@ class Signup extends Component {
 }
 
   handleSubmit = (event) => {
-    fetch("http://localhost:3050/api/user/signup", {
+    fetch(`${APIURL}/api/user/signup`, {
       method: 'POST',
       body: JSON.stringify({user: this.state }),
       headers: new Headers({
@@ -62,8 +63,9 @@ class Signup extends Component {
   render() {
 
     if (this.state.toLogin === true) {
-      return <Redirect to='/signin' />
+      return <Redirect to='/' />
     }
+
     return (
       <React.Fragment>
         <Header>Sign Up</Header>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Sitebar from '../Sitebar';
-import Shelf from '../Shelf';
 import DistilleryDisplay from './DistilleryDisplay';
 
 class Distillery extends Component {
@@ -8,7 +7,7 @@ class Distillery extends Component {
     return (
       <div>
         <Sitebar clickLogout={this.props.clickLogout} sessionToken={this.props.sessionToken} setToken={this.props.setToken} slainteModal={this.props.slainteModal} task={this.props.task} />
-        <Shelf />
+        <h1>Future Proprietor Distillery Entry</h1>
         <DistilleryDisplay />
       </div>
     );

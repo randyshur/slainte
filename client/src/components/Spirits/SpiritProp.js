@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
 import Sitebar from '../Sitebar';
-import Shelf from '../Shelf';
-import DistilleryDisplay from './DistilleryDisplay';
+import SpiritDisplay from './SpiritDisplay';
 
-class Distillery extends Component {
+class Spirit extends Component {
   render() {
     return (
       <div>
         <Sitebar clickLogout={this.props.clickLogout} sessionToken={this.props.sessionToken} setToken={this.props.setToken} slainteModal={this.props.slainteModal} task={this.props.task} />
-        <Shelf />
-        <DistilleryDisplay />
+        <h1>Future Proprietor Spirit Entry</h1>
+        <SpiritDisplay />
       </div>
     );
   }
 }
 
-export default Distillery;
+export default Spirit;
